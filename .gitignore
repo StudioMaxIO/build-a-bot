@@ -15,6 +15,9 @@
 # production
 /build
 
+#archives
+/data/chats/archive
+
 # misc
 .DS_Store
 *.pem

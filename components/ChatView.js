@@ -1,4 +1,4 @@
-// components/GuidanceView.js
+// components/ChatView.js
 import React, { useState, useEffect } from "react";
 import styles from "./ChatView.module.css";
 import ReactMarkdown from "react-markdown";
@@ -31,23 +31,35 @@ const ChatView = ({ chatBot }) => {
     setInputValue("");
   };
 
+  const archiveChat = async () => {
+    console.log("Archiving...");
+    // Implementation of archiveChat function goes here
+    await chatBot.archiveChat();
+    setMessages(chatBot.messages);
+  };
+
   return (
     <div className={styles.container}>
       <h2>{chatBot.botName}</h2>
-      {messages && messages.length > 0 ? (
-        messages
-          .filter((message) => message.role !== "system") // Exclude system messages
-          .map((message, index) => (
-            <div key={index}>
-              <strong>{message.role}: </strong>
-              <ReactMarkdown>{message.content}</ReactMarkdown>{" "}
-            </div>
-          ))
+      {messages &&
+      messages.length > 0 &&
+      !messages.every((message) => message.role === "system") ? (
+        <div>
+          {messages
+            .filter((message) => message.role !== "system") // Exclude system messages
+            .map((message, index) => (
+              <div key={index}>
+                <strong>{message.role}: </strong>
+                <ReactMarkdown>{message.content}</ReactMarkdown>{" "}
+              </div>
+            ))}
+          <button onClick={archiveChat}>Archive</button>
+        </div>
       ) : (
         <button onClick={handleConsult}>Consult</button>
       )}
       <form onSubmit={handleSubmit} className={styles.messageForm}>
-        <textarea // replaced input tag with textarea
+        <textarea
           value={inputValue}
           onChange={handleInputChange}
           className={styles.inputField}

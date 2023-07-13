@@ -12,6 +12,7 @@ class GPTBot {
     this.fileName = botName;
     this.filePath = `${process.cwd()}/data/chats/${botName}.json`;
     this.filePath2 = `${process.cwd()}data/chats/${botName}.json`;
+    this.archiveFilePath = `${process.cwd()}/data/chats/archive/`;
     this.systemMessageExtra = `Only use the functions you have been provided with.
       Any time you require information you do not have access to or have a required task you cannot perform, you should suggest a function that would allow you to gather that information or perform that task.`;
     this.functions = [];
@@ -78,6 +79,30 @@ class GPTBot {
       });
 
       console.log(result.data.message); // 'File successfully written'
+    } catch (error) {
+      console.error("Error writing to file:", error);
+    }
+  }
+
+  async archiveChat() {
+    try {
+      const datedFileName = `${this.fileName}-${Date.now()}`;
+      const archiveFilePath = `${this.archiveFilePath}${datedFileName}.json`;
+      const result = await axios.post("/api/writeToFile", {
+        filePath: archiveFilePath,
+        data: {
+          messages: require(`../data/chats/${this.fileName}.json`).messages
+        }
+      });
+      console.log(result.data.message); // 'File successfully written'
+
+      const result2 = await axios.post("/api/writeToFile", {
+        filePath: this.filePath,
+        data: {
+          messages: []
+        }
+      });
+      console.log(result2.data.message);
     } catch (error) {
       console.error("Error writing to file:", error);
     }
