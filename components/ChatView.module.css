@@ -1,0 +1,28 @@
+/* component/GuidanceView.module.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    height: 600px;
+    overflow-y: scroll;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  
+  .messageForm {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: auto;
+  }
+  
+  .inputField {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+  

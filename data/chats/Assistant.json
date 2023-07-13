@@ -1,0 +1,16 @@
+{
+    "messages": [
+        {
+            "role": "system",
+            "content": "You are a helpful assistant.\n\nOnly use the functions you have been provided with.\n      Any time you require information you do not have access to or have a required task you cannot perform, you should suggest a function that would allow you to gather that information or perform that task."
+        },
+        {
+            "role": "user",
+            "content": "How's the weather?"
+        },
+        {
+            "role": "assistant",
+            "content": "I'm sorry, I can't provide the current weather as I don't have access to real-time data. However, a function that could provide this information would be getWeather(location)."
+        }
+    ]
+}
