@@ -1,15 +1,18 @@
 // index.js
 import Chat from "../components/Chat";
 import React, { useState, useEffect } from "react";
+import Assistant from "../bots/Assistant";
 
 const Home = ({}) => {
-  const [view, setView] = useState("Chat");
+  const [view, setView] = useState("Assistant");
+
+  const assistant = new Assistant();
 
   const renderView = () => {
     switch (view) {
-      case "Chat":
+      case "Assistant":
       default:
-        return <Chat />;
+        return <Chat chatBot={assistant} />;
     }
   };
 
@@ -17,7 +20,7 @@ const Home = ({}) => {
     <div className="App">
       <header className="App-header">
         <nav>
-          <button onClick={() => setView("Chat")}>Chat</button>
+          <button onClick={() => setView("Assistant")}>Assistant</button>
         </nav>
         {renderView()}
       </header>
