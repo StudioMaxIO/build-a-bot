@@ -17,6 +17,7 @@
 
 #archives
 /data/chats/archive
+/data/archive
 
 # misc
 .DS_Store

@@ -1,22 +1,19 @@
 // index.js
 import Chat from "../components/Chat";
 import React, { useState, useEffect } from "react";
-import Assistant from "../bots/Assistant";
-import DefiGuru from "../bots/DefiGuru";
+import WeatherBot from "../bots/Weather";
 
 const Home = ({}) => {
   const [view, setView] = useState("Assistant");
 
-  const assistant = new Assistant();
-  const defiGuru = new DefiGuru();
+  const weatherBot = new WeatherBot();
 
   const renderView = () => {
+    // add more cases for more bots
     switch (view) {
-      case "DefiGuru":
-        return <Chat chatBot={defiGuru} />;
-      case "Assistant":
+      case "WeatherBot":
       default:
-        return <Chat chatBot={assistant} />;
+        return <Chat chatBot={weatherBot} />;
     }
   };
 
@@ -24,8 +21,7 @@ const Home = ({}) => {
     <div className="App">
       <header className="App-header">
         <nav>
-          <button onClick={() => setView("Assistant")}>Assistant</button>
-          <button onClick={() => setView("DefiGuru")}>DefiGuru</button>
+          <button onClick={() => setView("WeatherBot")}>Weather</button>
         </nav>
         {renderView()}
       </header>

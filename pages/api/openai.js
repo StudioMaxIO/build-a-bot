@@ -1,5 +1,3 @@
-// /api/openai.js
-// import { Configuration, OpenAIApi } from "openai";
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({

@@ -5,6 +5,11 @@ export default function handler(req, res) {
   const { filePath, data } = req.body;
   const fileFullPath = path.join(process.cwd(), filePath);
 
+  // if directory exists, write to file, if not, create directory
+  if (!fs.existsSync(path.dirname(fileFullPath))) {
+    fs.mkdirSync(path.dirname(fileFullPath));
+  }
+
   try {
     let existingData = { messages: [] };
     // Write all messages back to the file
