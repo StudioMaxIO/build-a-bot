@@ -1,37 +1,3 @@
 {
-    "messages": [
-        {
-            "role": "system",
-            "content": "You are a template of a GPT chatbot...\n\n\n      Always use the functions you have been provided with to gather information before you ask the user for anything. The user should only be prompted for information that you cannot gather yourself.\n\n      Any time you require information you do not have access to or have a required task you cannot perform using your available functions, you should suggest a function that would allow you to gather that information or perform that task. These should be functions that you currently do not have access to. If you already have access, do not request a function.\n      \n      Functions should be realistic with a tangible return value. Here are some examples:\n      ####\n      Good function: \"Search the internet for the best De-Fi projects. Return a list of top 5 projects by market cap.\" \n      Bad function: \"Incentivize early holders to contribute to the liquidity pool.\" \n      \n      Good function: \"Send an email to someone with a particular message.\n      Bad function: \"Create and manage social media accounts, a function to manage these social media accounts and engage with the community.\"\n      ####"
-        },
-        {
-            "role": "user",
-            "content": "Send some test data to myFunction"
-        },
-        {
-            "role": "assistant",
-            "content": "Sure, here is an example of how you can send test data to `myFunction`:\n\n```javascript\nmyFunction({\n  someInput: \"Test data\",\n  someOtherInput: \"option1\",\n  someOptionalInput: \"Optional test data\"\n})\n```\n\nPlease replace \"Test data\", \"option1\", and \"Optional test data\" with the actual data you want to test."
-        },
-        {
-            "role": "user",
-            "content": "No, you send it and let me know what it returns"
-        },
-        {
-            "role": "assistant",
-            "content": null,
-            "function_call": {
-                "name": "myFunction",
-                "arguments": "{\n  \"someInput\": \"Test data\",\n  \"someOtherInput\": \"option1\",\n  \"someOptionalInput\": \"Optional test data\"\n}"
-            }
-        },
-        {
-            "role": "function",
-            "name": "myFunction",
-            "content": "{\n  \"output\": \"Hello World!\"\n}"
-        },
-        {
-            "role": "assistant",
-            "content": "The function `myFunction` returned the string \"Hello World!\" when provided with the test data."
-        }
-    ]
+    "messages": []
 }
