@@ -85,7 +85,7 @@ function myFunction(args) {
   const response = {
     output: "Hello World!"
   };
-  // Return should always be a string. Objects can be stringified.
+  // Should always return a string. Objects can be stringified.
   return JSON.stringify(response, null, 2);
 }
 
