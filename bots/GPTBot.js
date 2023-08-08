@@ -3,7 +3,7 @@ import axios from "axios";
 const systemMessageDefault = "You are a helpful assistant.";
 
 class GPTBot {
-  constructor(botName, temperature = 0.2, updateMessages) {
+  constructor(botName, temperature = 0.1, updateMessages) {
     this.temperatureDefault = temperature;
     this.botName = botName;
 

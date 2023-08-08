@@ -41,16 +41,18 @@ cp bots/Template.js bots/YourBot.js
 ### Customize Your Bot
 
 ```javascript
-// YourBot.js
 import GPTBot from "./GPTBot";
 import { functions } from "../botFunctions";
 
 class YourBot extends GPTBot {
   constructor() {
     // Change the name of your bot here. This is how it will be referenced throughout the app.
-    super("YourBot");
+    // Second argument is the default temperature to use for this bot.
+    super("YourBot", 0.2);
+    // You can also set the temperature with the temperatureDefault property.
+    this.temperatureDefault = 0.2;
     // Set the system message to describe your bot.
-    this.setSystemMessage(`You are an incredible storyteller...`);
+    this.setSystemMessage(`You are a template of a GPT chatbot...`);
     // Add functions from botFunctions.js
     this.accessFunctions([functions.getCurrentDate]);
     // Add custom functions
