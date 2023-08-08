@@ -34,12 +34,16 @@ module.exports.functions = {
       const lat = args.lat;
       const lon = args.lon;
       const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
-      const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
-      try {
-        const response = await axios.get(url);
-        return JSON.stringify(response.data);
-      } catch (error) {
-        return JSON.stringify(error);
+      if (apiKey) {
+        const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+        try {
+          const response = await axios.get(url);
+          return JSON.stringify(response.data);
+        } catch (error) {
+          return JSON.stringify(error);
+        }
+      } else {
+        return "No OpenWeather API key found. Make sure to set NEXT_PUBLIC_WEATHER_API_KEY in your .env.local file.";
       }
     },
     name: "getWeather",
@@ -65,13 +69,16 @@ module.exports.functions = {
       const countryCode = args.countryCode;
       const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
       const limit = 1;
-      const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${stateCode},${countryCode}&limit=${limit}&appid=${apiKey}`;
-      console.log("api key: ", apiKey);
-      try {
-        const response = await axios.get(url);
-        return JSON.stringify(response.data);
-      } catch (error) {
-        return JSON.stringify(error);
+      if (apiKey) {
+        const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${stateCode},${countryCode}&limit=${limit}&appid=${apiKey}`;
+        try {
+          const response = await axios.get(url);
+          return JSON.stringify(response.data);
+        } catch (error) {
+          return JSON.stringify(error);
+        }
+      } else {
+        return "No OpenWeather API key found. Make sure to set NEXT_PUBLIC_WEATHER_API_KEY in your .env.local file.";
       }
     },
     name: "getLatLong",
