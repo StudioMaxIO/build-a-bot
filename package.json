@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "license": "GPL-3.0",
+  "author": "Max Meier",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StudioMaxIO/build-a-bot.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
