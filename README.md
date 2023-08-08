@@ -1,6 +1,6 @@
 # 🤖💬 Build-a-Bot 🤖💬
 
-Quickly prototype custom chatbots connected to OpenAI's API.
+### _Quickly prototype custom chatbots connected to OpenAI's API._
 
 ## Quick Start
 
