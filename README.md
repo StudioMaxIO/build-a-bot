@@ -4,7 +4,7 @@ A template for quickly prototyping chat bots connected to OpenAI's API.
 
 ## Quick Start
 
-Create a `.env.local` file in the root of the project and add the following:
+Create a `.env.local` file in the root of the project and add the following, replacing `<YOUR_API_KEY>` with your actual OpenAI API key.
 
 ```bash
 echo "OPENAI_API_KEY=<YOUR_API_KEY>" .env.local
