@@ -56,32 +56,37 @@ class YourBot extends GPTBot {
     // Add functions from botFunctions.js
     this.accessFunctions([functions.getCurrentDate]);
     // Add custom functions
-    this.addFunction(myFunction, "myFunction", "Description of myFunction", {
-      type: "object",
-      properties: {
-        // Add parameters. if none, pass empty object
-        someInput: {
-          type: "string",
-          description: "Some input to myFunction"
+    this.addFunction(
+      yourFunction,
+      "yourFunction",
+      "Description of yourFunction",
+      {
+        type: "object",
+        properties: {
+          // Add parameters. if none, pass empty object
+          someInput: {
+            type: "string",
+            description: "Some input to yourFunction"
+          },
+          someOtherInput: {
+            type: "string",
+            description: "Some other input to yourFunction",
+            enum: ["option1", "option2", "option3"] // can be used to limit input to a set of options
+          },
+          someOptionalInput: {
+            type: "string",
+            description: "Some optional input to yourFunction"
+          }
         },
-        someOtherInput: {
-          type: "string",
-          description: "Some other input to myFunction",
-          enum: ["option1", "option2", "option3"] // can be used to limit input to a set of options
-        },
-        someOptionalInput: {
-          type: "string",
-          description: "Some optional input to myFunction"
-        }
-      },
-      required: ["someInput", "someOtherInput"] // Add required parameters here
-    });
+        required: ["someInput", "someOtherInput"] // Add required parameters here
+      }
+    );
   }
 }
 
-function myFunction(args) {
+function yourFunction(args) {
   // Add function logic here
-  console.log("myFunction called with args:", args);
+  console.log("yourFunction called with args:", args);
   const response = {
     output: "Hello World!"
   };
