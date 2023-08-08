@@ -6,6 +6,7 @@ import ReactMarkdown from "react-markdown";
 const ChatView = ({ chatBot }) => {
   const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false); // New loading state
 
   chatBot.updateMessages = setMessages;
 
@@ -20,30 +21,37 @@ const ChatView = ({ chatBot }) => {
   };
 
   const handleConsult = async () => {
+    setLoading(true);
     console.log("Consulting...");
     await chatBot.consult();
+    setLoading(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     console.log("Submitting prompt:", inputValue);
     await chatBot.ask(inputValue);
     setInputValue("");
+    setLoading(false);
   };
 
   const archiveChat = async () => {
+    setLoading(true);
     console.log("Archiving...");
-    // Implementation of archiveChat function goes here
     await chatBot.archiveChat();
     setMessages(chatBot.messages);
+    setLoading(false);
   };
 
   return (
     <div className={styles.container}>
       <h2>{chatBot.botName}</h2>
-      {messages &&
-      messages.length > 0 &&
-      !messages.every((message) => message.role === "system") ? (
+      {loading ? (
+        <div>Loading...</div> // Spinner or loading indicator
+      ) : messages &&
+        messages.length > 0 &&
+        !messages.every((message) => message.role === "system") ? (
         <div>
           {messages
             .filter((message) => message.role !== "system") // Exclude system messages
@@ -63,8 +71,9 @@ const ChatView = ({ chatBot }) => {
           value={inputValue}
           onChange={handleInputChange}
           className={styles.inputField}
+          disabled={loading} // Disable input during loading
         />
-        <button type="submit" disabled={!inputValue}>
+        <button type="submit" disabled={!inputValue || loading}>
           Submit
         </button>
       </form>
