@@ -51,10 +51,17 @@ const ChatView = ({ chatBot }) => {
         <div>Loading...</div> // Spinner or loading indicator
       ) : messages &&
         messages.length > 0 &&
-        !messages.every((message) => message.role === "system") ? (
+        !messages.every(
+          (message) =>
+            message.role === "system" ||
+            message.role === "function" ||
+            !message.function_call
+        ) ? (
         <div>
           {messages
             .filter((message) => message.role !== "system") // Exclude system messages
+            .filter((message) => message.role !== "function") // Exclude function messages
+            .filter((message) => !message.function_call) // exclude function calls
             .map((message, index) => (
               <div key={index}>
                 <strong>{message.role}: </strong>
