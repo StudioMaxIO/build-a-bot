@@ -1,6 +1,6 @@
-# Build-a-Bot
+# Build-a-Bot 🤖
 
-A template for quickly prototyping chat bots connected to OpenAI's API.
+Quickly prototype custom chat bots connected to OpenAI's API.
 
 ## Quick Start
 
