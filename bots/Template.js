@@ -3,16 +3,13 @@ import { functions } from "../botFunctions";
 
 class YourBot extends GPTBot {
   constructor() {
-    // Change the name of your bot here. This is how it will be referenced throughout the app.
-    // Second argument is the default temperature to use for this bot.
-    super("YourBot", 0.2);
-    // You can also set the temperature with the temperatureDefault property.
-    this.temperatureDefault = 0.2;
-    // Set the system message to describe your bot.
+    super("YourBot", 0.1);
     this.setSystemMessage(`You are a template of a GPT chatbot...`);
-    // Add functions from botFunctions.js
-    this.accessFunctions([functions.getCurrentDate]);
-    // Add custom functions
+    // To access function from botFunctions.js:
+    // this.accessFunctions([functions.getCurrentDate]);
+
+    // To add custom functions:
+    /*
     this.addFunction(myFunction, "myFunction", "Description of myFunction", {
       type: "object",
       properties: {
@@ -33,16 +30,15 @@ class YourBot extends GPTBot {
       },
       required: ["someInput", "someOtherInput"] // Add required parameters here
     });
+    */
   }
 }
 
 function myFunction(args) {
-  // Add function logic here
   console.log("myFunction called with args:", args);
   const response = {
     output: "Hello World!"
   };
-  // Return should always be a string. Objects can be stringified.
   return JSON.stringify(response, null, 2);
 }
 
