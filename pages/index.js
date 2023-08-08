@@ -1,34 +1,44 @@
 // index.js
 import Chat from "../components/Chat";
-import React, { useState, useEffect } from "react";
-import WeatherBot from "../bots/Weather";
-import WhetherBot from "../bots/Whether";
+import React, { useState } from "react";
+import YourBot from "../bots/Template";
+// import WeatherBot from "../bots/Weather";
+// import WhetherBot from "../bots/Whether";
 
-const Home = ({}) => {
-  const [view, setView] = useState("Assistant");
+const ChatBot = ({}) => {
+  const [view, setView] = useState("YourBot");
 
-  const weatherBot = new WeatherBot();
-  const whetherBot = new WhetherBot();
+  const yourBot = new YourBot();
+  // const weatherBot = new WeatherBot();
+  // const whetherBot = new WhetherBot();
 
   const renderView = () => {
-    // add more cases for more bots
     switch (view) {
+      /* 
       case "WhetherBot":
-        return <Chat chatBot={whetherBot} />;
+         return <Chat chatBot={whetherBot} />;
+      */
+      /* 
       case "WeatherBot":
+         return <Chat chatBot={weatherBot} />;
+      */
+      case "YourBot":
       default:
-        return <Chat chatBot={weatherBot} />;
+        return <Chat chatBot={yourBot} />;
     }
   };
 
   return (
     <div className="App">
       <header className="App-header">
-        <nav>
+        {/* <nav>
           <button onClick={() => setView("WeatherBot")}>Weather</button>
-        </nav>
-        <nav>
+        </nav> */}
+        {/* <nav>
           <button onClick={() => setView("WhetherBot")}>Whether</button>
+        </nav> */}
+        <nav>
+          <button onClick={() => setView("YourBot")}>Your Bot</button>
         </nav>
         {renderView()}
       </header>
@@ -36,4 +46,4 @@ const Home = ({}) => {
   );
 };
 
-export default Home;
+export default ChatBot;

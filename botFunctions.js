@@ -1,4 +1,5 @@
-// functions available to any bot. All functions return info in the form of a string, typically json.
+// Common functions available for any bot
+
 import axios from "axios";
 require("dotenv").config();
 
