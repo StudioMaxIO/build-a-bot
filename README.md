@@ -1,4 +1,4 @@
-# 🤖 Build-a-Bot 🤖
+# 🤖💬 Build-a-Bot 🤖💬
 
 Quickly prototype custom chat bots connected to OpenAI's API.
 
