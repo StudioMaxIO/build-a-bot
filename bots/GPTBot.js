@@ -270,7 +270,6 @@ class GPTBot {
       role: "user",
       content: prompt
     });
-    // await this.appendMessagesToFile([this.messages[this.messages.length - 1]]);
     let messages = await this.createCompletion(temperature);
     return messages;
   }
