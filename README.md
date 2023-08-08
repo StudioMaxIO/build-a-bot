@@ -1,6 +1,6 @@
 # 🤖💬 Build-a-Bot 🤖💬
 
-Quickly prototype custom chat bots connected to OpenAI's API.
+Quickly prototype custom chatbots connected to OpenAI's API.
 
 ## Quick Start
 
@@ -30,11 +30,67 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to start int
 
 ## Creating a Custom Chatbot
 
+### Create a New Bot File
+
 Copy `Template.js` in the `bots` directory and rename it something useful, e.g. `CareerCoach.js` or `CustomerSupport.js`. Replace `YourBot.js` with the name of your bot file.
 
 ```bash
 cp bots/Template.js bots/YourBot.js
 ```
+
+### Customize Your Bot
+
+```javascript
+// YourBot.js
+import GPTBot from "./GPTBot";
+import { functions } from "../botFunctions";
+
+class YourBot extends GPTBot {
+  constructor() {
+    // Change the name of your bot here. This is how it will be referenced throughout the app.
+    super("YourBot");
+    // Set the system message to describe your bot.
+    this.setSystemMessage(`You are an incredible storyteller...`);
+    // Add functions from botFunctions.js
+    this.accessFunctions([functions.getCurrentDate]);
+    // Add custom functions
+    this.addFunction(myFunction, "myFunction", "Description of myFunction", {
+      type: "object",
+      properties: {
+        // Add parameters. if none, pass empty object
+        someInput: {
+          type: "string",
+          description: "Some input to myFunction"
+        },
+        someOtherInput: {
+          type: "string",
+          description: "Some other input to myFunction",
+          enum: ["option1", "option2", "option3"] // can be used to limit input to a set of options
+        },
+        someOptionalInput: {
+          type: "string",
+          description: "Some optional input to myFunction"
+        }
+      },
+      required: ["someInput", "someOtherInput"] // Add required parameters here
+    });
+  }
+}
+
+function myFunction(args) {
+  // Add function logic here
+  console.log("myFunction called with args:", args);
+  const response = {
+    output: "Hello World!"
+  };
+  // Return should always be a string. Objects can be stringified.
+  return JSON.stringify(response, null, 2);
+}
+
+export default YourBot;
+```
+
+### Import Your Chatbot
 
 Open `pages/index.js` and import your bot:
 
