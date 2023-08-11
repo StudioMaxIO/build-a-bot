@@ -49,14 +49,7 @@ const ChatView = ({ chatBot }) => {
       <h2>{chatBot.botName}</h2>
       {loading ? (
         <div>Loading...</div> // Spinner or loading indicator
-      ) : messages &&
-        messages.length > 0 &&
-        !messages.every(
-          (message) =>
-            message.role === "system" ||
-            message.role === "function" ||
-            !message.function_call
-        ) ? (
+      ) : messages && messages.length > 0 ? (
         <div>
           {messages
             .filter((message) => message.role !== "system") // Exclude system messages
